@@ -39,6 +39,7 @@ def to_excel1(df):
           "bold": True,
       })
       format.set_font_size(12)
+      format.set_font_name('Arial')
       format.set_font_color("#333333")
       border_format = workbook.add_format({
 
