@@ -58,7 +58,7 @@ def to_excel1(df):
           writer.sheets[sheet].write(4,0, 'No', header_format)
           writer.sheets[sheet].write(4, col_num+1,value,header_format)
           # Adjust the column width.
-          writer.sheets[sheet].write_column(5, 0, data)
+          writer.sheets[sheet].write_column(5, 0, col_num+1)
           writer.sheets[sheet].set_column('A:A', 15,col1_format)
           writer.sheets[sheet].set_column('B:B', 40,col1_format)
           writer.sheets[sheet].set_column('C:D', 15,col_format)
