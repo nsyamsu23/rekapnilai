@@ -4,8 +4,8 @@ import xlsxwriter
 from io import BytesIO
 from xlsxwriter.utility import xl_rowcol_to_cell
 def to_excel1(df):
-    df = df[[df.columns[2],"Score","Kelas"]]
-    df = df.rename(columns={df.columns[0] : 'Nama', 'Score': 'Nilai'})
+    df = df[[df.columns[2],"Kelas","Score"]]
+    df = df.rename(columns={df.columns[0] : 'Nama Lengkap', 'Score': 'Nilai'})
     df = df.sort_values(['Nama'], ascending=[True])
     df.reset_index(drop=True)
     df1 = df.groupby('Kelas').agg({"count"})
@@ -44,6 +44,10 @@ def to_excel1(df):
         'right':2,
 
     })
+    col_format = workbook.add_format({
+            "valign": "vcenter",
+            "align": "center",
+        })
       
       writer.sheets[sheet].merge_range('A1:C1', title_new, format)
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
@@ -53,8 +57,8 @@ def to_excel1(df):
           
           writer.sheets[sheet].write(4, col_num, value, header_format)
           # Adjust the column width.
-          writer.sheets[sheet].set_column('A:C', 20)
-      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["Kelas"]== str(sheet)]), len(df[df["Kelas"]== str(sheet)].columns) - 1), {'type': 'no_errors', 'format': border_format})
+          writer.sheets[sheet].set_column('B:C', 20,col_format)
+      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["Kelas"]== str(sheet)]), len(df[df["Kelas"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
     return processed_data
