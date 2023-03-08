@@ -6,7 +6,7 @@ from xlsxwriter.utility import xl_rowcol_to_cell
 def to_excel1(df):
     df = df[[df.columns[2],"Kelas","Score"]]
     df = df.rename(columns={df.columns[0] : 'Nama Lengkap', 'Score': 'Nilai'})
-    df['Nama Lengkap']= data['Nama Lengkap'].str.upper().str.title()
+    df['Nama Lengkap']= df['Nama Lengkap'].str.upper().str.title()
     df = df.sort_values(['Nama Lengkap'], ascending=[True])
     df.reset_index(drop=True)
     df1 = df.groupby('Kelas').agg({"count"})
