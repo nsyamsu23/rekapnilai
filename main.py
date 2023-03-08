@@ -20,6 +20,7 @@ def to_excel1(df):
     header_format = workbook.add_format({
             "valign": "vcenter",
             "align": "center",
+            "bold": True,
         })
     col_format = workbook.add_format({
             "valign": "vcenter",
@@ -39,15 +40,10 @@ def to_excel1(df):
       })
       format.set_font_size(12)
       format.set_font_name('Arial')
-      format.set_font_color("#333333")
-      border_format = workbook.add_format({
-
-        'bottom':2, 
-        'top':2, 
-        'left':2, 
-        'right':2,
-
-    })
+      header_format.set_font_size(12)
+      header_format.set_font_name('Arial')
+      col_format.set_font_size(12)
+      col_format.set_font_name('Arial')
       writer.sheets[sheet].merge_range('A1:C1', title_new, format)
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
