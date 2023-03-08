@@ -55,7 +55,8 @@ def to_excel1(df):
           
           writer.sheets[sheet].write(4, col_num, value, header_format)
           # Adjust the column width.
-          writer.sheets[sheet].set_column('A:C', 20,col_format)
+          writer.sheets[sheet].set_column('A:A', 20,col1_format)
+          writer.sheets[sheet].set_column('B:C', 20,col_format)
       writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["Kelas"]== str(sheet)]), len(df[df["Kelas"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
