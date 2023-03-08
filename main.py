@@ -53,12 +53,12 @@ def to_excel1(df):
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
       for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
           writer.sheets[sheet].write(4,0, 'No', header_format)
-          writer.sheets[sheet].write(4, col_num+1, value, header_format)
+          writer.sheets[sheet].write(4, col_num+1, header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 15,col1_format)
           writer.sheets[sheet].set_column('B:B', 40,col1_format)
           writer.sheets[sheet].set_column('C:D', 15,col_format)
-      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 6+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
+      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
     return processed_data
