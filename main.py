@@ -52,8 +52,8 @@ def to_excel1(df):
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
       for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
-          writer.sheets[sheet].write(4,0, 'No', header_format)
-          writer.sheets[sheet].write(4, col_num+1,value+1 ,header_format)
+          writer.sheets[sheet].write(4,0, 'No',len(value), header_format)
+          writer.sheets[sheet].write(4, col_num+1,value,header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 15,col1_format)
           writer.sheets[sheet].set_column('B:B', 40,col1_format)
