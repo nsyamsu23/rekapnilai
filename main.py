@@ -55,7 +55,8 @@ def to_excel1(df):
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
       i = 4;
       for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
-          writer.sheets[sheet].write(4,0, 'No',data, header_format)
+          writer.sheets[sheet].write(4,0, 'No', header_format)
+          worksheet.write_row(4, 1, data)
           writer.sheets[sheet].write(4, col_num+1,value,header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 15,col1_format)
