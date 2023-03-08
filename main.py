@@ -25,7 +25,6 @@ def to_excel1(df):
             "valign": "vcenter",
             "align": "center",
         })
-    header_format.set_border()
     for sheet in name_sheet:
       #add title
       title_new = title
