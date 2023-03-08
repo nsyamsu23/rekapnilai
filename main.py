@@ -21,6 +21,10 @@ def to_excel1(df):
             "align": "center",
             "bold": True,
         })
+    col_format = workbook.add_format({
+            "valign": "vcenter",
+            "align": "center",
+        })
     header_format.set_border()
     for sheet in name_sheet:
       #add title
@@ -44,11 +48,6 @@ def to_excel1(df):
         'right':2,
 
     })
-    col_format = workbook.add_format({
-            "valign": "vcenter",
-            "align": "center",
-        })
-      
       writer.sheets[sheet].merge_range('A1:C1', title_new, format)
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
