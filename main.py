@@ -26,6 +26,7 @@ def to_excel1(df):
             "valign": "vcenter",
             "align": "center",
         })
+    col1_format = workbook.add_format()
     for sheet in name_sheet:
       #add title
       title_new = title
@@ -44,6 +45,8 @@ def to_excel1(df):
       header_format.set_font_name('Arial')
       col_format.set_font_size(12)
       col_format.set_font_name('Arial')
+      col1_format.set_font_size(12)
+      col1_format.set_font_name('Arial')
       writer.sheets[sheet].merge_range('A1:C1', title_new, format)
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
@@ -52,6 +55,7 @@ def to_excel1(df):
           
           writer.sheets[sheet].write(4, col_num, value, header_format)
           # Adjust the column width.
+          writer.sheets[sheet].set_column('A', 20,col1_format)
           writer.sheets[sheet].set_column('B:C', 20,col_format)
       writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["Kelas"]== str(sheet)]), len(df[df["Kelas"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
