@@ -5,17 +5,17 @@ from io import BytesIO
 from xlsxwriter.utility import xl_rowcol_to_cell
 def to_excel1(df):
     df = df[[df.columns[2],"Kelas","Score"]]
-    df = df.rename(columns={df.columns[0] : 'Nama Lengkap', 'Score': 'Nilai'})
-    df['Nama Lengkap']= df['Nama Lengkap'].str.upper().str.title()
-    df = df.sort_values(['Nama Lengkap'], ascending=[True])
+    df = df.rename(columns={df.columns[0] : 'NAMA LENGKAP', 'Score': 'NILAI', 'Kelas': 'KELAS'})
+    df['NAMA LENGKAP']= df['NAMA LENGKAP'].str.upper().str.title()
+    df = df.sort_values(['NAMA LENGKAP'], ascending=[True])
     df.reset_index(drop=True)
-    df1 = df.groupby('Kelas').agg({"count"})
+    df1 = df.groupby('KELAS').agg({"count"})
     df1 = df1.reset_index()
-    name_sheet = df1["Kelas"].values.tolist()
+    name_sheet = df1["KELAS"].values.tolist()
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
-       df[df["Kelas"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
+       df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
     workbook = writer.book
     header_format = workbook.add_format({
             "valign": "vcenter",
@@ -51,13 +51,13 @@ def to_excel1(df):
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
-      for col_num, value in enumerate(df[["Nama Lengkap","Kelas","Nilai"]].columns.values):
+      for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
           
           writer.sheets[sheet].write(4, col_num, value, header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 40,col1_format)
           writer.sheets[sheet].set_column('B:C', 15,col_format)
-      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["Kelas"]== str(sheet)]), len(df[df["Kelas"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
+      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
     return processed_data
