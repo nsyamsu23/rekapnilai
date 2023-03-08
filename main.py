@@ -4,7 +4,6 @@ import xlsxwriter
 from io import BytesIO
 from xlsxwriter.utility import xl_rowcol_to_cell
 def to_excel1(df):
-    number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34]
     df = df[[df.columns[2],"Kelas","Score"]]
     df = df.rename(columns={df.columns[0] : 'NAMA LENGKAP', 'Score': 'NILAI', 'Kelas': 'KELAS'})
     df['NAMA LENGKAP']= df['NAMA LENGKAP'].str.upper().str.title()
@@ -53,7 +52,7 @@ def to_excel1(df):
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
       for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
-          writer.sheets[sheet].write(4,0, 'No',number[col_num], header_format)
+          writer.sheets[sheet].write(4,0, 'No',col_num+1, header_format)
           writer.sheets[sheet].write(4, col_num+1, value, header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 15,col1_format)
