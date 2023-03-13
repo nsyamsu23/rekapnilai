@@ -53,16 +53,12 @@ def to_excel1(df):
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
-      my_list = [1, 2, 3, 4, 5]
-
-      for row_num, data in enumerate(my_list):
-          writer.sheets[sheet].write(row_num, 0, data)
       for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
-          writer.sheets[sheet].write(4, col_num+1,value,header_format)
+          writer.sheets[sheet].write(4, col_num,value,header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 40,col1_format)
           writer.sheets[sheet].set_column('B:D', 15,col_format)
-      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 2), {'type': 'no_errors'})
+      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
     return processed_data
