@@ -17,7 +17,6 @@ def to_excel1(df):
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
        numbers = []
-       df.reset_index(drop=True, inplace=True)
        df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=True,startcol=0,startrow=4)
     workbook = writer.book
     header_format = workbook.add_format({
@@ -55,6 +54,7 @@ def to_excel1(df):
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
       for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
+          df.reset_index(drop=True, inplace=True)
           writer.sheets[sheet].write(4, col_num,value,header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 40,col1_format)
