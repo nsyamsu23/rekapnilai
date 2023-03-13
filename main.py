@@ -17,7 +17,7 @@ def to_excel1(df):
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
        numbers = []
-        if(df["KELAS"]== str(sheet)):
+       if(df["KELAS"]== str(sheet)):
             for i in range(1, len(df['NAMA LENGKAP']):
                            numbers.append(i)
        df['NO'] = numbers
