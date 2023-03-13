@@ -14,6 +14,7 @@ def to_excel1(df):
     df1 = df1.reset_index()
     name_sheet = df1["KELAS"].values.tolist()
     output = BytesIO()
+    df["NO"] = []
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
        numbers = []
