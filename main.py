@@ -19,7 +19,7 @@ def to_excel1(df):
        numbers = []
        df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
        if(df["KELAS"]== str(sheet)):
-           for i in range(1, len(df['NAMA LENGKAP'])):
+           for i in range(1, len(df['NAMA LENGKAP'])+1):
                     numbers.append(i)
        df['NO'] =numbers
     workbook = writer.book
