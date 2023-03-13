@@ -62,7 +62,7 @@ def to_excel1(df):
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 40,col1_format)
           writer.sheets[sheet].set_column('B:D', 15,col_format)
-      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 4), {'type': 'no_errors'})
+      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 2), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
     return processed_data
