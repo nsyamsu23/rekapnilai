@@ -52,7 +52,7 @@ def to_excel1(df):
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
       i = 4;
-      for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
+      for col_num, value in enumerate(df[["NAMA LENGKAP","NILAI","KELAS"]].columns.values):
           writer.sheets[sheet].write(4, col_num,value,header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 40,col1_format)
