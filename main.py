@@ -57,8 +57,8 @@ def to_excel1(df):
 
       for row_num, data in enumerate(my_list):
           writer.sheets[sheet].write(row_num, 4, data)
-      for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
-          writer.sheets[sheet].write(4, col_num+1,value,header_format)
+      for col_num+1, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
+          writer.sheets[sheet].write(4, col_num,value,header_format)
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 40,col1_format)
           writer.sheets[sheet].set_column('B:D', 15,col_format)
