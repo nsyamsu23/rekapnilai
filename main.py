@@ -16,6 +16,10 @@ def to_excel1(df):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
+       numbers = []
+       for i in range(1, len(df['NAMA LENGKAP']) :
+            numbers.append(i)
+       df['NO'] = numbers
        df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
     workbook = writer.book
     header_format = workbook.add_format({
@@ -52,12 +56,13 @@ def to_excel1(df):
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
-      i = 4;
-      for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
+
+      for col_num, value in enumerate(df[["NO","NAMA LENGKAP","KELAS","NILAI"]].columns.values):
           writer.sheets[sheet].write(4, col_num,value,header_format)
           # Adjust the column width.
-          writer.sheets[sheet].set_column('A:A', 40,col1_format)
-          writer.sheets[sheet].set_column('B:D', 15,col_format)
+          writer.sheets[sheet].set_column('A:A', 15,col_format)
+          writer.sheets[sheet].set_column('B:B', 40,col1_format)
+          writer.sheets[sheet].set_column('C:D', 15,col_format)
       writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
