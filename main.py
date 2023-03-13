@@ -21,7 +21,6 @@ def to_excel1(df):
        if(df["KELAS"]== str(sheet)):
            for i in range(1, len(df['NAMA LENGKAP'])+1):
                     numbers.append(i)
-       df['NO'] =numbers
     workbook = writer.book
     header_format = workbook.add_format({
             "valign": "vcenter",
