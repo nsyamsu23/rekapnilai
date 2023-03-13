@@ -14,7 +14,6 @@ def to_excel1(df):
     df1 = df1.reset_index()
     name_sheet = df1["KELAS"].values.tolist()
     output = BytesIO()
-    df["NO"] = []
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
        numbers = []
@@ -63,7 +62,7 @@ def to_excel1(df):
           # Adjust the column width.
           writer.sheets[sheet].set_column('A:A', 40,col1_format)
           writer.sheets[sheet].set_column('B:D', 15,col_format)
-      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 0, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
+      writer.sheets[sheet].conditional_format(xlsxwriter.utility.xl_range(4, 1, 4+len(df[df["KELAS"]== str(sheet)]), len(df[df["KELAS"]== str(sheet)].columns) - 1), {'type': 'no_errors'})
     writer.save()
     processed_data = output.getvalue()
     return processed_data
