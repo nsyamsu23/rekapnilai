@@ -18,9 +18,9 @@ def to_excel1(df):
     for sheet in name_sheet:
        numbers = []
        if(df["KELAS"]== str(sheet)):
-            for i in range(1, len(df['NAMA LENGKAP']):
+            for i in range(1, len(df['NAMA LENGKAP'])):
                            numbers.append(i)
-       df = pd.DataFrame(numbers, columns=["NO"])
+       df['NO'] =numbers
        df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
     workbook = writer.book
     header_format = workbook.add_format({
