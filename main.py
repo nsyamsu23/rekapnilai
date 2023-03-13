@@ -17,7 +17,7 @@ def to_excel1(df):
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
        numbers = []
-       df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=True,startcol=0,startrow=4)
+       df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
     workbook = writer.book
     header_format = workbook.add_format({
             "valign": "vcenter",
