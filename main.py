@@ -82,7 +82,7 @@ if uploaded_file:
     df_xlsx = to_excel1(df)
     st.download_button(label='📥 Download Current Result',
                                 data=df_xlsx ,
-                                file_name= subheader+'.xlsx')
+                                file_name= 'NILAI '+subheader+'.xlsx')
 
 
 
