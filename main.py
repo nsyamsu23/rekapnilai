@@ -1,22 +1,21 @@
 import streamlit as st
 import pandas as pd
 import xlsxwriter
-from io import BytesIO
+from io
 from xlsxwriter.utility import xl_rowcol_to_cell
 def to_excel1(df):
     df = df[[df.columns[2],df.columns[1],df.columns[4]]]
-    df = df.rename(columns={df.columns[0] : 'NAMA LENGKAP', df.columns[1]: 'KELAS',df.columns[2]: 'NILAI'})
-    df['NAMA LENGKAP']= df['NAMA LENGKAP'].str.upper().str.title()
+    df = df.rename(columns={df.columns[0] : 'NAMA LENGKAP', df.columns[1]: 'NILAI', df.columns[2] : 'KELAS'})
+    df.reset_index(drop=True)
     
     df = df.sort_values(['NAMA LENGKAP'], ascending=[True])
     df1 = df.groupby('KELAS').agg({"count"})
     df1 = df1.reset_index()
-
     name_sheet = df1["KELAS"].values.tolist()
-    output = BytesIO()
+    output = io.BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     for sheet in name_sheet:
-       df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
+        df[df["KELAS"]== str(sheet)].to_excel(writer, sheet_name=str(sheet),index=False,startcol=0,startrow=4)
     workbook = writer.book
     header_format = workbook.add_format({
             "valign": "vcenter",
