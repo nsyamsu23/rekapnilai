@@ -4,7 +4,7 @@ import xlsxwriter
 from io import BytesIO
 from xlsxwriter.utility import xl_rowcol_to_cell
 def to_excel1(df):
-    df = df[[df.columns[1],df.columns[3],df.columns[4]]
+    df = df[[df.columns[2],df.columns[3],df.columns[4]]
     df = df.rename(columns={df.columns[2] : 'NAMA LENGKAP', df.columns[4]: 'KELAS',df.columns[1]: 'NILAI'})
     
     df['NAMA LENGKAP']= df['NAMA LENGKAP'].str.upper().str.title()
