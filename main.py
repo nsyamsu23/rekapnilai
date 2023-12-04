@@ -48,6 +48,9 @@ def to_excel1(df):
       col_format.set_font_name('Arial')
       col1_format.set_font_size(12)
       col1_format.set_font_name('Arial')
+      writer.sheets[sheet].merge_range('A1:C1', title1, format)
+      writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
+      writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
       for col_num, value in enumerate(df[["NAMA LENGKAP","KELAS","NILAI"]].columns.values):
           writer.sheets[sheet].write(4, col_num,value,header_format)
