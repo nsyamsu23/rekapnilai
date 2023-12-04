@@ -30,7 +30,7 @@ def to_excel1(df):
     col1_format = workbook.add_format()
     for sheet in name_sheet:
       #add title
-      title_new = title
+      title_new = title1
       subheader_new = subheader
       subheader1_new = subheader1
       #merge cells
@@ -48,7 +48,7 @@ def to_excel1(df):
       col_format.set_font_name('Arial')
       col1_format.set_font_size(12)
       col1_format.set_font_name('Arial')
-     
+      writer.sheets[sheet].merge_range('A1:C1', title, format)
       writer.sheets[sheet].merge_range('A2:C2', subheader_new,format)
       writer.sheets[sheet].merge_range('A3:C3', subheader1_new,format)
       writer.sheets[sheet].set_row(2, 15) # Set the header row height to 15
@@ -63,7 +63,7 @@ def to_excel1(df):
     return processed_data
 
 st.write('# REKAP NILAI')
-title =st.text_input('Judul', 'REKAPITULASI')
+title1 =st.text_input('Judul', 'REKAPITULASI')
 
 subheader =st.text_input('SubJudul', 'PENDIDIKAN AGAMA ISLAM')
 subheader1 =st.text_input('SubJudul', 'PTS GANJIL 2022/2023')
@@ -71,7 +71,7 @@ subheader1 =st.text_input('SubJudul', 'PTS GANJIL 2022/2023')
 uploaded_file = st.file_uploader("Upload spreadsheet", type=["csv", "xlsx"])
 
 # Check if file was uploaded
-st.write('Judul : ', title)
+st.write('Judul : ', title1)
 st.write('Sub Judul : ', subheader)
 if uploaded_file:
     # Check MIME type of the uploaded file
