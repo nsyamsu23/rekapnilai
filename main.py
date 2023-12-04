@@ -79,7 +79,7 @@ if uploaded_file:
         df = pd.read_csv(uploaded_file,sep = ';')
     else:
         df = pd.read_excel(uploaded_file)
-    df_xlsx = to_excel1(df)
+    df_xlsx = to_excel(df)
     st.download_button(label='📥 Download Current Result',
                                 data=df_xlsx ,
                                 file_name= 'NILAI '+subheader+'.xlsx')
